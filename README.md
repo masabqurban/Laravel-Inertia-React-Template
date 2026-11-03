@@ -17,6 +17,7 @@ A production-ready **Laravel 13 + Inertia 3 + React 19 + TypeScript** starter. B
 ## Contents
 
 - [Highlights](#highlights)
+- [Use this template](#use-this-template)
 - [Getting started](#getting-started)
 - [Choosing a database](#choosing-a-database)
 - [Scripts](#scripts)
@@ -43,6 +44,42 @@ A production-ready **Laravel 13 + Inertia 3 + React 19 + TypeScript** starter. B
 | **Database**       | Portable schema: SQLite out of the box, PostgreSQL or MySQL by changing `.env`. CI runs the full suite on all three                      |
 | **Quality**        | Pest (64 tests, architecture rules), PHPStan level 8 (Larastan), Pint, Oxlint + Oxfmt via Vite+, `tsc`, GitHub Actions, Dependabot       |
 | **Operations**     | Multi-stage Docker image on FrankenPHP running as non-root, health check, `compose.yaml` with PostgreSQL, MySQL and Mailpit              |
+
+## Use this template
+
+**1. Create your repository.** Click **Use this template → Create a new repository** at the top of this page. Your new repository gets a clean history and no link back to this one. Or use the GitHub CLI:
+
+```bash
+gh repo create my-app --template masabqurban/Laravel-Inertia-React-Template --private --clone
+cd my-app
+```
+
+Prefer no Git history at all? Run `npx degit masabqurban/Laravel-Inertia-React-Template my-app`.
+
+**2. Install and run it.**
+
+```bash
+composer setup    # dependencies, .env, app key, migrations, demo data, asset build
+composer dev      # http://localhost:8000, demo@example.com / password
+```
+
+Or with Docker: `php artisan key:generate`, then `docker compose up --build` (http://localhost:8080).
+
+**3. Make it yours.**
+
+- `composer.json`: change `"name"` from `masabqurban/laravel-inertia-react-template`, and update the description and keywords.
+- `APP_NAME` in `.env.example` (default "Acme Console"), the logo in `resources/js/components/app-logo-icon.tsx`, and the colours in `resources/css/app.css`.
+- The repository links in `resources/js/components/app-sidebar.tsx` and `resources/js/pages/welcome.tsx`.
+- Pick your database. See [Choosing a database](#choosing-a-database).
+- Replace the copyright holder in `LICENSE` (or choose another license), and rewrite this README for your project.
+
+**4. Remove what you don't need.** The demo is there to show the patterns end to end. Keep the parts you'll build on and delete the rest:
+
+- **Users module:** to drop it, delete `UserController`, `app/Http/Requests/Users/`, `UserResource`, `UserPolicy`, `resources/js/pages/users/`, `resources/js/components/users/`, `tests/Feature/Users/`, the `users` route and its sidebar item. Keep the `Role` and `UserStatus` enums if you still want roles.
+- **Demo data:** the 47 placeholder users come from `database/seeders/DatabaseSeeder.php`. Trim it to the accounts you need for development.
+- **Welcome page:** `resources/js/pages/welcome.tsx` describes this template. Replace it with your own landing page, or redirect `/` to the dashboard in `routes/web.php`.
+
+**5. Turn on the repository settings.** In **Settings → Code security**, enable Dependabot alerts and private vulnerability reporting (`SECURITY.md` points reporters there). CI in `.github/workflows/` runs on your first push with no secrets required. Add branch protection on `main` that requires it to pass.
 
 ## Getting started
 
